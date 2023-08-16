@@ -1,0 +1,32 @@
+const express = require('express');
+const charRouter = express.Router();
+const { charServices, charServicesById } = require('../services/charServices');
+
+charRouter.get("/", (req, res, next) => {
+    charServices()
+        .then(result => res.status(200).json(result.data))
+        .catch(err => {
+            res.status(500).json({
+                error: {
+                    message: err.message,
+                },
+            });
+        });
+});
+
+charRouter.get("/:id", (req, res, next) => {
+    const { id } = req.params;
+    charServicesById(id)
+        .then(result => {
+            res.status(200).json(result.data);
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: {
+                    message: err.message,
+                },
+            });
+        });
+});
+
+module.exports = charRouter;
