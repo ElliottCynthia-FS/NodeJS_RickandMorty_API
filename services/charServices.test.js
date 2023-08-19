@@ -1,6 +1,6 @@
 const { charServices, charServicesById } = require('./charServices');
 
-//jest.mock('./charServices.js');
+jest.mock('./charServices.js');
 
 describe("Characters Service Test", () => {
     test("This will get all characters", async() => {
@@ -26,7 +26,6 @@ describe("Characters Service Test", () => {
         expect(result.data.url).toContain("https://rickandmortyapi.com/api/character/1");
         expect(result.data.created).toContain("2017-11-04T18:48:46.250Z");
     });
-
 
 });
 
